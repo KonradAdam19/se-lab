@@ -13,7 +13,7 @@ public class TorpedoStore {
   private double FAILURE_RATE = 0.0; //NOSONAR
 
   private int torpedoCount = 0;
-
+  // Így megfelelően random számot generál
   private Random generator = new Random();
 
   public TorpedoStore(int numberOfTorpedos){
@@ -32,6 +32,7 @@ public class TorpedoStore {
 
   public boolean fire(int numberOfTorpedos){
     if(numberOfTorpedos < 1 || numberOfTorpedos > this.torpedoCount){
+      //Most már eldobja a kivételt
       throw new IllegalArgumentException("numberOfTorpedos");
     }
 
@@ -43,6 +44,7 @@ public class TorpedoStore {
 
     if (r >= FAILURE_RATE) {
       // successful firing
+      //Megfordítottam a -= hogy megfelelő legyen a torpedó szám csökkentése
       this.torpedoCount -= numberOfTorpedos;
       success = true;
     } else {
